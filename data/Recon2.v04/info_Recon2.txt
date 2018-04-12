@@ -1,0 +1,4 @@
+metabolites	5063
+genes	2140
+reactions	7440
+
