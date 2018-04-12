@@ -150,7 +150,7 @@ addDUP <- args[2]
 
 genelist <- unique(read.table(paste(output,'/gene.list',sep=''), header = F, colClasses='character')$V1)
 
-if (isTRUE(addDUP)) {
+if (addDUP == 'addDUP') {
   gene_coord_ori <- read.table(paste(output,'/gene_coordinates.txt', sep=''), header = T)
   manually_addDUP(genelist, gene_coord_ori,output)
   ## transform to BED file

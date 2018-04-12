@@ -5,11 +5,9 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
 
 ## Metabolic model in MATLAB format
-MATFILE=data/erythrocyte/iAB_RBC_283.mat
+#MATFILE=data/erythrocyte/iAB_RBC_283.mat
+MATFILE=data/Recon2.v04/Recon2.v04.mat
 
-## Human Build GRCh37 ##**add this to src/get_genes_coordinates.R
-HUMAN_BUILD = GRCh37
-ADD_DUPS ?=''  ##**add this to src/get_genes_coordinates.R as an option
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
@@ -23,7 +21,7 @@ PIPELINE_DIR ?= /home/bego/Documents/PROJECTS/metabolic_evo-topo
 SCRIPTS_DIR ?= $(PIPELINE_DIR)/src
 
 ## Output destinations
-OUTPUT_DIR ?= ./results
+OUTPUT_DIR ?= ./results/data/Recon2
 REACTIONGRAPH_DIR = $(OUTPUT_DIR)/reactionGraph
 CCOMPONENTS_DIR = $(OUTPUT_DIR)/connectedComponents
 BOOSTING_DIR = $(OUTPUT_DIR)/boosting

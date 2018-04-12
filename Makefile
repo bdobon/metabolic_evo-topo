@@ -5,7 +5,7 @@
 
 include config.mk
 
-.PHONY: all help clean-all variables model2DRG topology 
+.PHONY: all help clean-all variables model2DRG topology duplicates
 
 ## all		: reaction graph,topology,selection,correlations,plots,archive.
 all : model2DRG topology 
@@ -29,11 +29,16 @@ $(CCOMPONENTS_DIR) : $(REACTIONGRAPH_DIR)
 	$(TOPOLOGY_EXE) $< $(CCOMPONENTS_DIR)
 
 
+## duplicates	: manually add duplicates/missing gene IDs
+duplicates :	
+	$(COORD_EXE) $(REACTIONGRAPH_DIR) 'addDUP'
+
+
 ## clean		: Remove results folder files.
 clean-all: 
 	-rm -vrf $(OUTPUT_DIR)
 	@echo
-	@echo "Everything is gone."
+	@echo 'Everything is gone.'
 
 
 ## variables	: Print variables.
