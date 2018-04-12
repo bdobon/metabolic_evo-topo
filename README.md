@@ -1,4 +1,4 @@
-# Topologycal and Evolutionary Analsys of a Metabolic Network
+# Topologycal and Evolutionary Analisys of a Metabolic Network
 
 Perform a topologycal and evolutionary analisys of a metabolic network: 
 creates a directed reaction graph from a metabolic model (MATLAB format).
@@ -37,7 +37,15 @@ Give the example running with Erythrocyte model
 
 ## Description
 
-Each of the programs/scripts
+### model2DRG	
+
+Create a directed reaction graph from a metabolic model.
+
+### topology	
+
+Calculate topology measures by connected components.
+It calculates: in-degree, out-degree, degree, closeness, betweenness, ratio in/out-degree, 
+source/sink, predecessors, successors.
 
 ## Workflow
 
