@@ -8,6 +8,7 @@ The rules are:
     - If the products of a node are the reactants of any other node, 
     create a directed link between them.
     - Removing currency metabolites.
+    - Remove generic biomass reaction
     - Allowing self-loops. 
     - If reaction is reversible, check reactants signs (+/-) to identify phyisiological direction. 
     - Returns a series of files with information about the graph:
@@ -273,6 +274,7 @@ if __name__ == '__main__':
 
     ## NOTE: removing generic biomass reaction from model
     biomass= [r.id for r in model.reactions if re.search('biomass', r.id,re.IGNORECASE)]
+    print('\nRemoving reactions: '+str(biomass))
     if biomass:
         model.remove_reactions(biomass)
 
