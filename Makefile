@@ -1,5 +1,5 @@
 #
-# Makefile for Evolutionary & Topologycal Analysis of a Metabolic Network
+# Makefile for Evolutionary & Topological Analysis of a Metabolic Network
 # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
