@@ -1,5 +1,5 @@
 #
-# Makefile for Evolutionary & Topological Analysis of a Metabolic Network
+# Makefile for Evolutionary & Topologycal Analysis of a Metabolic Network
 # 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -8,16 +8,18 @@ include config.mk
 .PHONY: all help clean-all variables model2DRG topology 
 
 ## all		: reaction graph,topology,selection,correlations,plots,archive.
-all : model2DRG topology
+all : model2DRG topology 
 
 
 ## model2DRG	: create a directed reaction graph from a model
 model2DRG : $(REACTIONGRAPH_DIR)
 
 
-$(REACTIONGRAPH_DIR) : $(MATFILE) $(MODEL2DRG_SRC)
+$(REACTIONGRAPH_DIR) : $(MATFILE) $(MODEL2DRG_SRC) $(COORD_SRC) 
 	$(MKDIR_P) $@
-	$(MODEL2DRG_EXE) $(REACTIONGRAPH_DIR) $<
+	$(MODEL2DRG_EXE) $(REACTIONGRAPH_DIR) $< 
+	$(COORD_EXE) $@
+	 
 
 ## topology	: calculate topology measures by connected components
 topology :	$(CCOMPONENTS_DIR)

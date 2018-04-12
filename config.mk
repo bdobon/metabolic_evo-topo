@@ -9,10 +9,7 @@ MATFILE=data/erythrocyte/iAB_RBC_283.mat
 
 ## Human Build GRCh37 ##**add this to src/get_genes_coordinates.R
 HUMAN_BUILD = GRCh37
-ADD_DUPS ?=FALSE ##**add this to src/get_genes_coordinates.R as an option
-
-## Send output to STDOUT (leave empty) or to a file.
-PROG_OUT = #&>/dev/null ##**check if this works or add
+ADD_DUPS ?=''  ##**add this to src/get_genes_coordinates.R as an option
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
@@ -59,8 +56,8 @@ MODEL2DRG_SRC=$(SCRIPTS_DIR)/create_reaction_graph.py
 MODEL2DRG_EXE=$(PYTHON) $(MODEL2DRG_SRC) 
 
 # Extract gene coordinates & link to reactions
-COORD_SRC=$(SCRIPTS_DIR)/get_genes_coordinates.R
-COORD_EXE=$(RSCRIPT_PATH) $(COORD_SRC)
+COORD_SRC=$(SCRIPTS_DIR)/get_genes_coordinates.R 
+COORD_EXE=$(RSCRIPT) $(COORD_SRC)
 
 # Calculate topology measures of all connected components of a DRG
 TOPOLOGY_SRC=$(SCRIPTS_DIR)/calculate_topology_RG.py 
