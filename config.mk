@@ -24,8 +24,8 @@ SCRIPTS_DIR ?= $(PIPELINE_DIR)/src
 
 ## Output destinations
 OUTPUT_DIR ?= ./results
-REACTIONGRAPH_DIR = $(OUTPUT_DIR)/reaction_graph
-CCOMPONENTS_DIR = $(OUTPUT_DIR)/cComponents
+REACTIONGRAPH_DIR = $(OUTPUT_DIR)/reactionGraph
+CCOMPONENTS_DIR = $(OUTPUT_DIR)/connectedComponents
 BOOSTING_DIR = $(OUTPUT_DIR)/boosting
 PLOTS_DIR = $(OUTPUT_DIR)/plots
 
