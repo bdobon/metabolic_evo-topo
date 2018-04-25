@@ -19,7 +19,7 @@ $(REACTIONGRAPH_DIR) : $(MATFILE) $(MODEL2DRG_SRC) $(COORD_SRC)
 	$(MKDIR_P) $@
 	$(MODEL2DRG_EXE) $(REACTIONGRAPH_DIR) $< 
 	$(COORD_EXE) $@
-	 
+
 
 ## topology	: calculate topology measures by connected components
 topology :	$(CCOMPONENTS_DIR)
@@ -39,6 +39,10 @@ clean-all:
 	-rm -vrf $(OUTPUT_DIR)
 	@echo
 	@echo 'Everything is gone.'
+
+## clean-RG		: Remove reaction graph folder.
+clean-RG:
+	-rm -vrf $(REACTIONGRAPH_DIR)
 
 
 ## variables	: Print variables.

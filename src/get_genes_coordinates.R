@@ -4,11 +4,6 @@
 ## Requires internet connection to connect to Ensmbl
 
 
-## If addDUP set to TRUE 
-## Create manually 2 files with the same format as genes_coordinates.txt:
-## - dup_gene_coordinates2.txt
-## - missing_ids2.txt
-
 ## functions ####
 generateQuery <- function(list_genes, id_genes='EntrezGene', output) {
   require(biomaRt)
@@ -115,53 +110,17 @@ gene2reaction <- function(ifile, output) {
   write.table(geneIDs_reaction, paste(output,'/geneIDs_Reactions.txt',sep=''),
               row.names = F, sep = '\t', quote = F)
 }
-manually_addDUP <- function(list_genes,ifile, output) {
-  ## Create manually 2 files with the same format as genes_coordinates.txt:
-  ## - dup_gene_coordinates2.txt
-  ## - missing_ids2.txt
-  if (file.exists(paste(output,'/dup_gene_coordinates2.txt', sep=''))){
-    ids_dups <- read.table(paste(output,'/dup_gene_coordinates2.txt', sep=''), header = T)
-    print(paste('dups added:',dim(ids_dups)[1]))
-    ifile <- rbind(ifile, ids_dups)
-  }else{
-    print('No duplicated ids recovered')
-  }
-  if (file.exists(paste(output,'/missing_ids2.txt', sep=''))){
-    ids_miss <- read.table(paste(output,'/missing_ids2.txt', sep=''), header = T)
-    print(paste('missing added:',dim(ids_miss)[1]))
-    ifile <- rbind(ifile, ids_miss)
-  }else{
-    print('No missing ids recovered')
-  }
-  print(paste('Genes:' ,length(list_genes)))
-  print(paste('Total ids recovered:', dim(ifile)[1] ))
-  file.copy(from = paste(output,'/gene_coordinates.txt',sep=''),
-            to = paste(output,'/gene_coordinates_ori.txt',sep=''))
-  write.table(ifile, paste(output,'/gene_coordinates.txt',sep=''),
-              row.names = F, sep = '\t', quote = F)
-}
-
 
 ## MAIN ####
 
 args <- commandArgs(trailingOnly = TRUE)
 output <- args[1]
-addDUP <- args[2] 
 
 genelist <- unique(read.table(paste(output,'/gene.list',sep=''), header = F, colClasses='character')$V1)
 
-if (addDUP == 'addDUP') {
-  gene_coord_ori <- read.table(paste(output,'/gene_coordinates.txt', sep=''), header = T)
-  manually_addDUP(genelist, gene_coord_ori,output)
-  ## transform to BED file
-  coord2BED(gene_coord_ori, output)
-  ## link gene IDs with REACTION
-  gene2reaction(gene_coord_ori, output)
-}else{
-  ## Query information from Biomart
-  gene_info <- generateQuery(genelist, id_genes ='EntrezGene', output)
-  ## transform to BED file
-  coord2BED(gene_info, output)
-  ## link gene IDs with REACTION
-  gene2reaction(gene_info, output)
-}
+## Query information from Biomart
+gene_info <- generateQuery(genelist, id_genes ='EntrezGene', output)
+## transform to BED file
+coord2BED(gene_info, output)
+## link gene IDs with REACTION
+gene2reaction(gene_info, output)

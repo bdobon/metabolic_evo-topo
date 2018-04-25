@@ -6,8 +6,7 @@
 
 ## Metabolic model in MATLAB format
 #MATFILE=data/erythrocyte/iAB_RBC_283.mat
-MATFILE=data/Recon2.v04/Recon2.v04.mat
-
+MATFILE=data/Recon3D/Recon3D_301/Recon3DModel_301.mat
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
@@ -21,7 +20,7 @@ PIPELINE_DIR ?= /home/bego/Documents/PROJECTS/metabolic_evo-topo
 SCRIPTS_DIR ?= $(PIPELINE_DIR)/src
 
 ## Output destinations
-OUTPUT_DIR ?= ./results/data/Recon2
+OUTPUT_DIR ?= ./results/Recon3DModel
 REACTIONGRAPH_DIR = $(OUTPUT_DIR)/reactionGraph
 CCOMPONENTS_DIR = $(OUTPUT_DIR)/connectedComponents
 BOOSTING_DIR = $(OUTPUT_DIR)/boosting

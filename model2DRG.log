@@ -1,0 +1,15 @@
+Removing reactions: ['biomass_reaction', 'biomass_maintenance', 'biomass_maintenance_noTrTr']
+
+Number of nodes: 10597
+Number of links: 178878
+
+Number of subsystems: 103
+
+Number of genes:1884
+
+[1] "Genes: 1884"
+[1] "Duplicated ids to manually select: 34"
+[1] "Total unique ids: 1821"
+[1] "Missing ids (if you manually select the dups): 29"
+
+Number of connected components: 964
