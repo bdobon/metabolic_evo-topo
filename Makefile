@@ -5,7 +5,7 @@
 
 include config.mk
 
-.PHONY: all help clean-all variables model2DRG topology duplicates
+.PHONY: all help clean-all variables model2DRG topology duplicates boost2BED
 
 ## all		: reaction graph,topology,selection,correlations,plots,archive.
 all : model2DRG topology 
@@ -34,13 +34,21 @@ duplicates :
 	$(COORD_EXE) $(REACTIONGRAPH_DIR) 'addDUP'
 
 
+## getBoosting	: convert boosting data into BED
+getBoosting : $(BED_FILES)
+
+$(DATABOOST_DIR)/%.bed : $(DATABOOST_DIR)/%.scores $(PARSEBOOST_SRC) $(REACTIONGRAPH_DIR)
+	@$(PARSEBOOST_EXE) $< $@
+	$(BEDTOOLS) -a $@.gz -b $(REACTIONGRAPH_DIR)/gene_coordinates.bed  -wb > $@.genes
+	
+
 ## clean		: Remove results folder files.
 clean-all: 
 	-rm -vrf $(OUTPUT_DIR)
 	@echo
 	@echo 'Everything is gone.'
 
-## clean-RG		: Remove reaction graph folder.
+## clean-RG	: Remove reaction graph folder.
 clean-RG:
 	-rm -vrf $(REACTIONGRAPH_DIR)
 
@@ -49,6 +57,7 @@ clean-RG:
 variables:
 	@echo OUTPUT: $(OUTPUT_DIR)
 	@echo MATFILE: $(MATFILE)
+	@echo BOOSTING_DATA: $(DATABOOST_DIR)
 
 ## help		: Show this help 
 help : Makefile

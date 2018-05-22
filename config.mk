@@ -7,6 +7,7 @@
 ## Metabolic model in MATLAB format
 #MATFILE=data/erythrocyte/iAB_RBC_283.mat
 MATFILE=data/Recon3D/Recon3D_301/Recon3DModel_301.mat
+DATABOOST_DIR=data/hierarchical_boosting
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
@@ -16,7 +17,7 @@ MATFILE=data/Recon3D/Recon3D_301/Recon3DModel_301.mat
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
 
 ## Path to the scripts
-PIPELINE_DIR ?= /home/bego/Documents/PROJECTS/metabolic_evo-topo
+PIPELINE_DIR ?= /home/bego/Documents/PROJECTS/METABOLOME/metabolic_evo-topo
 SCRIPTS_DIR ?= $(PIPELINE_DIR)/src
 
 ## Output destinations
@@ -39,6 +40,7 @@ SED = /bin/sed
 MKDIR_P = /bin/mkdir -p 
 PYTHON ?= /usr/bin/python2
 RSCRIPT ?= /usr/bin/Rscript
+BEDTOOLS ?= /home/bego/Software/bedtools2/bin/intersectBed
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
@@ -60,6 +62,38 @@ COORD_EXE=$(RSCRIPT) $(COORD_SRC)
 TOPOLOGY_SRC=$(SCRIPTS_DIR)/calculate_topology_RG.py 
 TOPOLOGY_EXE=$(PYTHON) $(TOPOLOGY_SRC) 
 
+# Convert boosting files into BED
+PARSEBOOST_SRC=$(SCRIPTS_DIR)/HierBoosting2BED.sh
+PARSEBOOST_EXE=$(SHELL) $(PARSEBOOST_SRC)
+BOOST_FILES=$(wildcard $(DATABOOST_DIR)/*.scores)
+BED_FILES=$(patsubst $(DATABOOST_DIR)/%.scores, $(DATABOOST_DIR)/%.bed, $(BOOST_FILES))
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

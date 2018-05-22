@@ -50,11 +50,29 @@ Calculate topology measures by connected components.
 It calculates: in-degree, out-degree, degree, closeness, betweenness, ratio in/out-degree, 
 source/sink, predecessors, successors.
 
+### getBoosting	
+
+Format hierarchical boosting scores files already calculated in 1000GP data to use with bedtools intersect.
+
+Added file of threshold of significance based on simulations: thresholds_of_significance.POP.txt
+
+Downloaded from:
+http://hsb.upf.edu/hsb_data/hierarchical_boosting/selection_scan/
 
 
 ## Workflow
 
+```
 
+make boost2BED	# already run 
+
+make model2DRG	
+
+make topology	
+
+
+
+```
 
 
 
