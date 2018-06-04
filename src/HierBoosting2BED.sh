@@ -22,16 +22,10 @@
 ifile=$1
 bedfile=$2
 
-
 echo "Processing $ifile"
-
-filename=$(basename "$ifile") #grab filename after 1st dot (removes path/whole_genome.)
-filename1=${filename#*.}
-filename2=${filename1%.*.*}
 
 ## skip header
 awk 'FNR >1  {print "chr"$2"\t"$3"\t"$4"\t"$5}' $ifile > $bedfile
-
-gzip -f $bedfile
+#gzip -f $bedfile
 
 

@@ -24,7 +24,8 @@ SCRIPTS_DIR ?= $(PIPELINE_DIR)/src
 OUTPUT_DIR ?= ./results/Recon3DModel
 REACTIONGRAPH_DIR = $(OUTPUT_DIR)/reactionGraph
 CCOMPONENTS_DIR = $(OUTPUT_DIR)/connectedComponents
-BOOSTING_DIR = $(OUTPUT_DIR)/boosting
+SEQUENCES_DIR = $(OUTPUT_DIR)/sequences
+STATSBOOST_DIR = $(OUTPUT_DIR)/boosting
 PLOTS_DIR = $(OUTPUT_DIR)/plots
 
 
@@ -58,6 +59,10 @@ MODEL2DRG_EXE=$(PYTHON) $(MODEL2DRG_SRC)
 COORD_SRC=$(SCRIPTS_DIR)/get_genes_coordinates.R 
 COORD_EXE=$(RSCRIPT) $(COORD_SRC)
 
+# Extract gene sequences & calculate genomic features
+SEQ_SRC=$(SCRIPTS_DIR)/get_genes_sequences.R 
+SEQ_EXE=$(RSCRIPT) $(SEQ_SRC)
+
 # Calculate topology measures of all connected components of a DRG
 TOPOLOGY_SRC=$(SCRIPTS_DIR)/calculate_topology_RG.py 
 TOPOLOGY_EXE=$(PYTHON) $(TOPOLOGY_SRC) 
@@ -66,7 +71,12 @@ TOPOLOGY_EXE=$(PYTHON) $(TOPOLOGY_SRC)
 PARSEBOOST_SRC=$(SCRIPTS_DIR)/HierBoosting2BED.sh
 PARSEBOOST_EXE=$(SHELL) $(PARSEBOOST_SRC)
 BOOST_FILES=$(wildcard $(DATABOOST_DIR)/*.scores)
-BED_FILES=$(patsubst $(DATABOOST_DIR)/%.scores, $(DATABOOST_DIR)/%.bed, $(BOOST_FILES))
+BOOSTBED_FILES=$(patsubst $(DATABOOST_DIR)/%.scores, $(DATABOOST_DIR)/%.bed, $(BOOST_FILES))
+
+STATSBOOST_SRC=$(SCRIPTS_DIR)/selection_score_stats.R
+STATSBOOST_EXE=$(RSCRIPT) $(STATSBOOST_SRC)
+STATSBOOST_FILES=$(patsubst $(DATABOOST_DIR)/%.bed, $(STATSBOOST_DIR)/%.intersect, $(BOOSTBED_FILES))
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
