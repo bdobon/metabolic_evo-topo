@@ -25,14 +25,3 @@ merged2 <- merge(genes_link, merged, by.x = 'V9', by.y = 'Group.1')
 names(merged2) <- c('hgnc_symbol','GENE', 'meanBoost', 'maxBoost')
 
 write.table(merged2, paste(output,'/',test ,'.txt', sep=''), quote = F, sep = '\t', row.names =F)
-
-## identify genes under positive selection
-## if at least there is a window that reaches the threshold of significance
-
-cutoff <- table_cutoff$V2[table_cutoff$V1 == test]
-
-sig_genes <- merged2[merged2$maxBoost >= cutoff,]
-
-if(dim(sig_genes)[1] > 0){
-  write.table(sig_genes['hgnc_symbol'], paste(output,'/',test ,'.signif.list', sep=''), quote = F, sep = '\t', row.names =F, col.names = T)
-}

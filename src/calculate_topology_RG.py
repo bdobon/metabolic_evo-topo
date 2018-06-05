@@ -372,15 +372,15 @@ def DG_successors_predecessors(out,DGc):
     Modified from Ludovica Montanucci.  
     '''
     make_folder(out+'/topology')
-    measure_pred, measure_succ = {}, {}
+    measure_pred, measure_succ,num_measure_pred,num_measure_succ = {}, {}, {}, {}
     DirG = nx.DiGraph(DGc) # need to copy it to remove self-feedback loops
     DirG.remove_edges_from(DirG.selfloop_edges())  
 
     n_simple_cycles = nx.simple_cycles(DirG) 
     if next(n_simple_cycles,None):    # NOT directly linear (reversible rr, loop)
         print('WARNING: Graph has cycles (successors/predecessors = CYC)')
-        num_measure_pred = dict(zip(DirG.nodes(),['CYC']*DirG.number_of_nodes() ) ) 
-        num_measure_succ = dict(zip(DirG.nodes(),['CYC']*DirG.number_of_nodes() ) ) 
+        #num_measure_pred = dict(zip(DirG.nodes(),['CYC']*DirG.number_of_nodes() ) ) 
+        #num_measure_succ = dict(zip(DirG.nodes(),['CYC']*DirG.number_of_nodes() ) ) 
     else:
         for node in DirG.nodes():       # LINEAR GRAPH 
             measure_succ[node] = DG_get_successors(DirG,node, set([]) )
@@ -389,20 +389,18 @@ def DG_successors_predecessors(out,DGc):
         num_measure_pred = DG_get_num_pred_succ(measure_pred)
         print('successors/predecessors calculated')
     
-    f = open(out+'/topology/sucessors.list','w')
-    f.write('REACTION\tSUCCESORS\n')
-    for k,v in num_measure_succ.items():
-        f.write(k+'\t'+str(v)+ '\n')
-    f.close
-    f = open(out+'/topology/predecessors.list','w')
-    f.write('REACTION\tPREDECESSORS\n')
-    for k,v in num_measure_pred.items():
-        f.write(k+'\t'+str(v)+ '\n')
-    f.close
-    return(num_measure_succ, num_measure_pred)
-
-
-# In[6]:
+    if len(num_measure_succ) > 0:    
+        f = open(out+'/topology/sucessors.list','w')
+        f.write('REACTION\tSUCCESORS\n')
+        for k,v in num_measure_succ.items():
+            f.write(k+'\t'+str(v)+ '\n')
+        f.close
+        f = open(out+'/topology/predecessors.list','w')
+        f.write('REACTION\tPREDECESSORS\n')
+        for k,v in num_measure_pred.items():
+            f.write(k+'\t'+str(v)+ '\n')
+        f.close
+        return(num_measure_succ, num_measure_pred)
 
 
 if __name__ == '__main__':

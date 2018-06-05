@@ -50,7 +50,7 @@ Calculate topology measures by connected components.
 It calculates: in-degree, out-degree, degree, closeness, betweenness, ratio in/out-degree, 
 source/sink, predecessors, successors.
 
-### getBoosting	
+### parseBoosting	
 
 Format hierarchical boosting scores files already calculated in 1000GP data to use with bedtools intersect.
 
@@ -59,22 +59,32 @@ Added file of threshold of significance based on simulations: thresholds_of_sign
 Downloaded from:
 http://hsb.upf.edu/hsb_data/hierarchical_boosting/selection_scan/
 
+### boostStats
+
+Calculate maximum and average value for each boosting score per gene (+10kb up/downstream). If at least one window reaches the threshold of significance classifies the gene as being under positive selection. 
+
+### getSequences
+
+Retrieve CDS (coding sequence) in FASTA format for all genes. 
 
 ## Workflow
 
 ```
 
-make boost2BED	# already run 
+make parseBoosting	# already run 
 
 make model2DRG	
 
 make topology	
 
+make boostStats
+
+make getSequences
 
 
 ```
 
-
+Alternatively `make all` run all the previous steps. 
 
 
 ## Authors

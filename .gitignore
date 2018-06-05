@@ -1,6 +1,6 @@
 .Rhistory
 .RData
 *.pyc
-*.~
+*~
 notebooks
 results
