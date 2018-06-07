@@ -4,3 +4,10 @@ When using the human metabolism resource, the reconstruction, or the computation
 
 Brunk et al., "Recon3D enables a three-dimensional view of gene variation in human metabolism, Nature Biotechnology (2018); doi:10.1038/nbt.4072
 
+From http://bigg.ucsd.edu/models/Recon3D
+
+Component	Count
+Metabolites	5835
+Reactions	10600
+Genes		2248
+
