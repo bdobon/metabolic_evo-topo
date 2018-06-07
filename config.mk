@@ -10,10 +10,12 @@
 ##	- OUTPUT_DIR = General results folder
 #MATFILE ?= data/Recon2.v04/Recon2.v04.mat
 #OUTPUT_DIR ?= ./results/Recon2
-#MATFILE ?= data/Recon3D/Recon3D_301/Recon3DModel_301.mat
-#OUTPUT_DIR ?= ./results/Recon3DModel
-MATFILE ?= data/Recon3D/Recon3D_301/Recon3D_301.mat
-OUTPUT_DIR ?= ./results/Recon3D
+MATFILE ?= data/Recon3D/Recon3D_301/Recon3DModel_301.mat
+OUTPUT_DIR ?= ./results/Recon3DModel
+#MATFILE ?= data/Recon3D/Recon3D_301/Recon3D_301.mat
+#OUTPUT_DIR ?= ./results/Recon3D
+#MATFILE ?= data/HMR2.0/HMRdatabase2_00.mat
+#OUTPUT_DIR ?= ./results/HMR2.0
 
 
 DATABOOST_DIR ?= data/hierarchical_boosting
@@ -79,8 +81,8 @@ STATSBOOST_SRC=$(SCRIPTS_DIR)/selection_score_stats.R
 STATSBOOST_EXE=$(RSCRIPT) $(STATSBOOST_SRC)
 STATSBOOST_FILES=$(patsubst $(DATABOOST_DIR)/%.bed, $(STATSBOOST_DIR)/%.intersect, $(BOOSTBED_FILES))
 
-## Plot permutation postive genes boosting vs. centralities
-PLOTBOOST_SRC=$(SCRIPTS_DIR)/plot_PS_permut_Boost.R
+## Plot relation posotive genes boosting vs. centralities
+PLOTBOOST_SRC=$(SCRIPTS_DIR)/plot_PS_Boosting_Topology.R
 PLOTBOOST_EXE=$(RSCRIPT) $(PLOTBOOST_SRC)
 
 
